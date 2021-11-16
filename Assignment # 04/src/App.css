@@ -1,0 +1,15 @@
+:root{
+  --main-color:#006d77
+}
+
+.correctAns{
+  border: 2px solid green;
+  border-radius: 5px;
+}
+.wrongAns{
+  border: 2px solid red;
+  border-radius: 5px;
+}
+.answers{
+  border-bottom: 2px solid lightgray;
+}

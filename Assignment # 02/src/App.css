@@ -1,0 +1,39 @@
+
+.cardImage{
+  max-height: 150px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cardImage img{
+  width: 100%;
+}
+
+.productCard{
+  transition: box-shadow 250ms linear;
+  background-color: rgba(246, 246, 246, 0.37);
+  width: 18rem;
+
+}
+
+.productCard:hover{
+  box-shadow: 0 0 10px rgba(128, 128, 128, 0.664);
+  cursor: pointer;
+}
+
+
+.stockAvailability{
+  font-size: 0.8em !important;
+  font-weight: 500;
+}
+
+.stockAvailability-yes{
+  color: #0db43c !important;
+}
+.stockAvailability-no{
+  color:red !important;
+}
+
+

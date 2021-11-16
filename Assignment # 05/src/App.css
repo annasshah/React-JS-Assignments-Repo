@@ -1,0 +1,30 @@
+.searchBy:hover,.searchBy:focus,.searchInput:hover,.searchInput:focus{
+  outline: none;
+}
+.searchInput{
+  border-left: 1px solid #a1a1a1 !important;
+  padding: 5px 25px;
+  width: 65%;
+  /* flex:2; */
+}
+.searchBtn{
+  background-color: #ff6a00;
+  color: white;
+  outline: none;
+  border: none;
+  padding: 6px 15px;
+  margin-left: 10px;
+}
+
+.searchInputDiv{
+  border: 2px solid #ff6a00;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  border-top-left-radius: 23px;
+  border-bottom-left-radius: 23px;
+  border-top-right-radius: 23px;
+  border-bottom-right-radius: 23px;
+  overflow: hidden;
+}
+
