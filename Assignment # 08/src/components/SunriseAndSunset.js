@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 export default function SunriseAndSunset() {
 
     const apiData = useSelector((state) => state)
-    const globalData = apiData.data
+    // const apiData.data = apiData.data
 
 
     let getSunRiseAndSetTime = (unix) => {
@@ -33,8 +33,8 @@ export default function SunriseAndSunset() {
             <Divider orientation='horizontal' variant="fullWidth" sx={{ backgroundColor: 'var(--primary)', height: '1px', px: '0px', mx: '0px' }} />
 
             <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ my: 1 }}>
-                <Stack><Typography>Sunrise</Typography> <Typography>{getSunRiseAndSetTime(globalData.sys.sunrise)}</Typography></Stack>
-                <Stack><Typography align='right'>Sunset</Typography> <Typography  align='right'>{getSunRiseAndSetTime(globalData.sys.sunset)}</Typography></Stack>
+                <Stack><Typography>Sunrise</Typography> <Typography>{getSunRiseAndSetTime(apiData.data.sys.sunrise)}</Typography></Stack>
+                <Stack><Typography align='right'>Sunset</Typography> <Typography  align='right'>{getSunRiseAndSetTime(apiData.data.sys.sunset)}</Typography></Stack>
             </Stack>
 
         </Grid>

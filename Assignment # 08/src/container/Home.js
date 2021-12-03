@@ -1,6 +1,6 @@
-import { Box, Container, Grid} from '@mui/material';
+import { Box, Container, Grid } from '@mui/material';
 import React, { useEffect } from 'react'
-import { useSelector,useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import CelsiusData from '../components/CelsiusData';
 import TopBar from '../components/TopBar';
 import WeatherLocation from '../components/WeatherLocation';
@@ -13,23 +13,22 @@ import { getData } from '../config/action';
 
 export default function Home() {
 
-    const globalData = useSelector((state) => state)
-
+    
+    
     const dispatch = useDispatch();
-
     useEffect(() => {
         dispatch(getData);
     }, []);
 
     return (
 
-        <>
+        <Box>
             <TopBar />
             <Box sx={{ mt: 5 }}>
                 <Container>
                     <Grid container>
 
-                        {/* <WeatherLocation /> */}
+                        <WeatherLocation />
 
                         <WindAirAndHumidity />
 
@@ -39,7 +38,6 @@ export default function Home() {
 
                         <MoreDetails />
 
-
                     </Grid>
 
                 </Container>
@@ -48,7 +46,7 @@ export default function Home() {
 
 
 
-        </>
+        </Box>
 
     )
 }

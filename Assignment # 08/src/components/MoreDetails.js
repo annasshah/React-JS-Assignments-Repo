@@ -3,9 +3,10 @@ import { useSelector } from 'react-redux';
 
 
 export default function MoreDetails() {
+    
 
     const apiData = useSelector((state) => state)
-    const globalData = apiData.data
+    // const apiData.data = apiData.data
 
 
     let tempInCelsius = (Kelvin) => {
@@ -28,13 +29,13 @@ export default function MoreDetails() {
 
                     <Stack direction='row' justifyContent='space-between'>
                         <Typography variant='body1'>Fahrenheit:</Typography>
-                        <Typography variant='body1'>{tempInFahrenheit(globalData.main.feels_like)}°F</Typography>
+                        <Typography variant='body1'>{tempInFahrenheit(apiData.data.main.feels_like)}°F</Typography>
                     </Stack>
                     <Divider orientation='horizontal' variant="fullWidth" sx={{ backgroundColor: 'var(--primary)', height: '0.5px' }} />
 
                     <Stack direction='row' justifyContent='space-between'>
                         <Typography variant='body1'>Feel Like:</Typography>
-                        <Typography variant='body1'>{tempInCelsius(globalData.main.feels_like)}°C</Typography>
+                        <Typography variant='body1'>{tempInCelsius(apiData.data.main.feels_like)}°C</Typography>
                     </Stack>
 
                     <Divider orientation='horizontal' variant="fullWidth" sx={{ backgroundColor: 'var(--primary)', height: '0.5px' }} />
@@ -42,7 +43,7 @@ export default function MoreDetails() {
 
                     <Stack direction='row' justifyContent='space-between'>
                         <Typography variant='body1'>Pressure:</Typography>
-                        <Typography variant='body1'>{tempInCelsius(globalData.main.pressure)} mgh</Typography>
+                        <Typography variant='body1'>{tempInCelsius(apiData.data.main.pressure)} mgh</Typography>
                     </Stack>
 
                     <Divider orientation='horizontal' variant="fullWidth" sx={{ backgroundColor: 'var(--primary)', height: '0.5px' }} />
@@ -66,13 +67,13 @@ export default function MoreDetails() {
                     
                     <Stack direction='row' justifyContent='space-between'>
                         <Typography variant='body1'>Speed:</Typography>
-                        <Typography variant='body1'>{globalData.wind.speed}m/s</Typography>
+                        <Typography variant='body1'>{apiData.data.wind.speed}m/s</Typography>
                     </Stack>
                     <Divider orientation='horizontal' variant="fullWidth" sx={{ backgroundColor: 'var(--primary)', height: '0.5px' }} />
 
                     <Stack direction='row' justifyContent='space-between'>
                         <Typography variant='body1'>deg:</Typography>
-                        <Typography variant='body1'>{globalData.wind.deg}°</Typography>
+                        <Typography variant='body1'>{apiData.data.wind.deg}°</Typography>
                     </Stack>
 
                     <Divider orientation='horizontal' variant="fullWidth" sx={{ backgroundColor: 'var(--primary)', height: '0.5px' }} />
