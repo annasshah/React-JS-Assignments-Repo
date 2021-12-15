@@ -20,7 +20,7 @@ function App() {
       secondary: {
         main: '#fff'
       },
-      success:{
+      info:{
         main:'#c5a880'
       }
     },

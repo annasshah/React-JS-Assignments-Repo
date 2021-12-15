@@ -30,6 +30,17 @@ const firebaseConfig = {
   appId: "1:857055963413:web:bd641a07c244278c6c611c",
 };
 
+
+// const firebaseConfig = {
+//   apiKey: "AIzaSyCJNX5eCjvTV_F2xnFhEmDCNNzOq5pOWw0",
+//   authDomain: "reacthotelmanagement.firebaseapp.com",
+//   projectId: "reacthotelmanagement",
+//   storageBucket: "reacthotelmanagement.appspot.com",
+//   messagingSenderId: "901644970153",
+//   appId: "1:901644970153:web:f8754fb31c32390acea1b8"
+// };
+
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);

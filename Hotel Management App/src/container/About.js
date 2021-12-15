@@ -4,8 +4,9 @@ import React from 'react'
 
 export default function About() {
     return (
+        <Box sx={{ backgroundColor: '#fff', minHeight: '86vh' }}>
         <Container>
-            <Stack direction='column' sx={{ my: 4 }} spacing={0}>
+            <Stack direction='column' sx={{ py: 4 }} spacing={0}>
                 <Stack>
 
                     <Typography variant='h4' sx={{ fontWeight: 'bold', px: 0 }}>About</Typography>
@@ -14,7 +15,7 @@ export default function About() {
                 </Stack>
 
 
-                <Stack sx={{ my: 3 }}>
+                <Stack sx={{ py: 3 }}>
                     <Typography sx={{ my: 1 }}>
                         Perspiciatis voluptate earum suscipit animi fugiat? Aut culpa provident veniam sed, libero aspernatur, eligendi veritatis quos, obcaecati facere adipisci beatae aliquid placeat voluptatum. Soluta minima alias aspernatur neque, placeat qui.
                         At, illo libero.</Typography>
@@ -43,5 +44,6 @@ export default function About() {
 
 
         </Container>
+        </Box>
     )
 }

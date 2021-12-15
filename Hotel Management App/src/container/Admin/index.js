@@ -54,18 +54,18 @@ export default function Admin() {
             link: 'customer-bookings',
             icon: <GoListUnordered />
         },
-        {
-            page: 'Users',
-            link: 'users',
-            icon: <FiUsers />
+        // {
+        //     page: 'Users',
+        //     link: 'users',
+        //     icon: <FiUsers />
 
-        },
-        {
-            page: 'Messages',
-            link: 'messages',
-            icon: <RiMessage2Line />
+        // },
+        // {
+        //     page: 'Messages',
+        //     link: 'messages',
+        //     icon: <RiMessage2Line />
 
-        },
+        // },
         {
             page: 'All Hotels',
             link: 'all-hotels',
@@ -92,7 +92,7 @@ export default function Admin() {
 
 
     return (
-        <Box sx={{backgroundColor:'#fff'}}>
+        <Box sx={{backgroundColor:'#fff',minHeight:'100vh'}}>
             {authStateLoading ? <Spinner /> : <Box>
                 <Grid container spacing={0}>
                     <Hidden mdDown={true} >
@@ -150,8 +150,8 @@ export default function Admin() {
                             <Routes  >
                                 <Route path='' element={<Overview />} />
                                 <Route path='customer-bookings' element={<CustomerBooking />} />
-                                <Route path='messages' element={<Messages />} />
-                                <Route path='users' element={<Users />} />
+                                {/* <Route path='messages' element={<Messages />} />
+                                <Route path='users' element={<Users />} /> */}
                                 <Route path='all-hotels' element={<AllHotels />} />
                                 <Route path='add-hotel' element={<AddHotel />} />
                             </Routes >

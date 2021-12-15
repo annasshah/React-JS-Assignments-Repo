@@ -59,3 +59,12 @@ body{
 .editProfileInput{
   outline-color:#dbdbdb;
 }
+
+.SelectOption{
+  border-color: var(--secondary);
+  /* outline-color: var(--secondary); */
+}
+.SelectOption:focus{
+  border-color: var(--secondary);
+  outline-color: var(--secondary);
+}

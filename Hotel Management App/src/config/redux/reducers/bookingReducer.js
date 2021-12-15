@@ -10,19 +10,12 @@ const reducer = (state = INITIAL_STATE, action) => {
     if (action.type === "GETUSERBOOKINGS") {
         return { ...state, ...action }
     }
-    else if (action.type === "GETUSERCARTDATA") {
-        if (action.cart === 'empty' || action.cart === null) {
-            state.cart = []
-            state.isLoading = false
-            return state
-        }
-        else {
-            let newarr = action.cart
-            return { ...state, ...action, cart:newarr,isLoading:false }
-        }
-
+    else if (action.type === "UPDATEBOOKINGS") {
+        return { ...state, ...action }
     }
-    return state;
+    else{
+        return state;
+    }
 };
 
 

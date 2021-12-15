@@ -79,7 +79,7 @@ export default function Home() {
 
             </Stack>
 
-            {loading ? <Spinner /> : <Grid container spacing={3}
+            {loading ? <Spinner /> : <Grid container justifyContent='center' spacing={3}
             // spacing={{ xs: 2, md: 3 }}
             >
               {productState.map((e, i) => {

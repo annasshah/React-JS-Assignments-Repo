@@ -2,7 +2,7 @@ import { Typography, Box, Container, SvgIcon, Stack, Button, Grid } from '@mui/m
 import CircularProgress from '@mui/material/CircularProgress';
 import { useRef } from 'react';
 import { BsDashLg } from 'react-icons/bs';
-import { database, ref, set, push,child } from '../config/firebaseconfig/Index'
+import { database, ref, set, push, child } from '../config/firebaseconfig/Index'
 
 export default function Contact() {
 
@@ -20,7 +20,7 @@ export default function Contact() {
     const name = useRef()
     const email = useRef()
     const message = useRef()
-    
+
     let handleSubmit = (e) => {
         e.preventDefault()
         const d = new Date();
@@ -28,10 +28,10 @@ export default function Contact() {
 
 
         let newMessage = {
-            name:name.current.value,
-            email:email.current.value,
-            message:message.current.value,
-            dateAndTime:postDate
+            name: name.current.value,
+            email: email.current.value,
+            message: message.current.value,
+            dateAndTime: postDate
         }
 
         console.log(newMessage);
@@ -47,8 +47,10 @@ export default function Contact() {
 
     }
 
-    return (
-        <Container>
+    return (<Box sx={{ backgroundColor: '#fff', minHeight: '86vh' }}>
+
+
+        <Container >
             <Grid container justifyContent='center'>
                 <Grid item xl={8} lg={8} md={10} sx={12} xs={12}>
                     <Stack direction='column' sx={{ my: 5, maxWidth: '800px' }} spacing={0}>
@@ -113,5 +115,6 @@ export default function Contact() {
             </Grid>
 
         </Container>
+    </Box>
     )
 }

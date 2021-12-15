@@ -104,7 +104,7 @@ export default function Bookings() {
 
                                     {/* const {title, image, price, category} = row */}
 
-                                    <StyledTableCell align="left"><Stack direction='row' sx={{ maxWidth: '35px', minWidth: '25px' }}><img width='100%' src={row.bookingData.image} alt="" /></Stack></StyledTableCell>
+                                    <StyledTableCell align="left"><Stack direction='row' sx={{ maxWidth: '35px', minWidth: '25px' }}><img width='100%' src={row.bookingData.imageLink} alt="" /></Stack></StyledTableCell>
                                     <StyledTableCell component="th" scope="row">
                                         {row.bookingData.title}
                                     </StyledTableCell>

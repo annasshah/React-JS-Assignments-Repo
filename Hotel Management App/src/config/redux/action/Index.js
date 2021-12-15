@@ -1,6 +1,6 @@
-import axios from "axios";
-// import { dispatch } from '../../router/Index'
-import { useDispatch } from 'react-redux'
+// import axios from "axios";
+// // import { dispatch } from '../../router/Index'
+// import { useDispatch } from 'react-redux'
 
 
 
@@ -44,13 +44,13 @@ let updateUserProfile = (dispatch,dataObj) => {
 }
 
 
-let updateUserCart = (dispatch,payload) => {
-    dispatch({
-        type: "ADDITEMTOCART",
-        cart:payload,
-    })
+// let updateUserCart = (dispatch,payload) => {
+//     dispatch({
+//         type: "ADDITEMTOCART",
+//         cart:payload,
+//     })
 
-}
+// }
 
 
 let getCartData = (dispatch, payload) => {
@@ -58,6 +58,13 @@ let getCartData = (dispatch, payload) => {
         type: "GETUSERBOOKINGS",
         cart:payload,
         isLoading:false
+    })
+}
+
+let updateCartData = (dispatch, payload) => {
+    dispatch({
+        type: "UPDATEBOOKINGS",
+        cart:payload,
     })
 }
 
@@ -84,4 +91,4 @@ let adminState = (dispatch, state) => {
 
 
 
-export { getData, changeUserAuth, updateUserProfile, updateUserCart, getCartData, adminState }
+export { getData, changeUserAuth, updateUserProfile, getCartData, adminState, updateCartData }

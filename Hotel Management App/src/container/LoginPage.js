@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Paper, Stack, Typography, TextField, Button, Avatar, } from "@mui/material";
+import { Paper, Stack, Typography, TextField, Button, Avatar, SvgIcon, Box } from "@mui/material";
 // import LoadingButton from '@mui/lab/LoadingButton';
 import { useNavigate } from "react-router";
+import { BsDashLg } from 'react-icons/bs';
+import CircularProgress from '@mui/material/CircularProgress';
+
+
 import {
   auth,
   signInWithEmailAndPassword,
@@ -17,6 +21,8 @@ import SmallSpinner from "../assets/SmallSpinner";
 export default function LoginPage() {
   const navigate = useNavigate();
 
+  const [submitLoading, setSubmitLoading] = useState(false)
+
   const [loading, setLoading] = useState()
   let state = useSelector(state => state)
 
@@ -25,8 +31,11 @@ export default function LoginPage() {
 
   let login = (e) => {
     e.preventDefault();
+
+    setSubmitLoading(true)
     if (!userDetails.email || !userDetails.password) {
       setErr("Please fill the fields first!");
+      setSubmitLoading(false)
     }
     else {
       console.log(userDetails);
@@ -34,11 +43,13 @@ export default function LoginPage() {
         .then((success) => {
           // Signed in
           console.log("User successfully login", success);
+          setSubmitLoading(false)
           navigate('/')
           // ...
         })
         .catch((error) => {
           console.log("User not login", error);
+          setSubmitLoading(false)
         });
       e.target.reset();
     }
@@ -59,7 +70,7 @@ export default function LoginPage() {
       justifyContent="center"
       alignItems="center"
       direction="column"
-      sx={{ width: "100%", height: "90vh" }}
+      sx={{ width: "100%", height: "90vh", backgroundColor: '#0000008a' }}
     >
       {loading ? <SmallSpinner /> : <Paper
         square={false}
@@ -84,13 +95,12 @@ export default function LoginPage() {
             onSubmit={(e) => login(e)}
           >
             <Stack>
-              <Typography
-                align="center"
-                sx={{ fontWeight: "bold" }}
-                variant="h4"
-              >
-                Login
-              </Typography>
+              <Box>
+                <Stack direction='column' spacing={0}>
+                  <Typography variant='h4' sx={{ fontWeight: 'bold', px: 0, color: 'var(--primary)' }}>Login</Typography>
+                  <SvgIcon sx={{ color: 'var(--primary)' }}><BsDashLg /></SvgIcon>
+                </Stack>
+              </Box>
             </Stack>
 
             {err && <Stack>
@@ -104,6 +114,7 @@ export default function LoginPage() {
                 onChange={(e) => setUserDetails({ ...userDetails, email: e.target.value })}
                 label="Email"
                 variant="outlined"
+                color='info'
               />
               <TextField
                 // id="outlined-basic"
@@ -111,11 +122,18 @@ export default function LoginPage() {
                 onChange={(e) => setUserDetails({ ...userDetails, password: e.target.value })}
                 label="Password"
                 variant="outlined"
+                color='info'
               />
 
-              <Button type="submit" fullWidth size="large" variant="contained">
+
+              <Stack direction='row' sx={{ my: 3, position: 'relative' }} justifyContent='center' alignItems='center'>
+                <Button type='submit' fullWidth sx={{ width: '100%', height: '3rem', color: 'white' }} variant={submitLoading ? 'outlined' : 'contained'} color='primary' size='large'>{submitLoading ? '' : 'Login'}</Button>
+                {submitLoading ? <Stack sx={{ position: 'absolute' }}> <CircularProgress size={20} disableShrink /></Stack> : null}
+              </Stack>
+
+              {/* <Button type="submit" fullWidth size="large" color="primary" sx={{ color: 'white' }} variant="contained">
                 Login
-              </Button>
+              </Button> */}
             </Stack>
 
             <Stack>
@@ -131,7 +149,7 @@ export default function LoginPage() {
                   to="/signup"
                   style={{
                     textDecoration: "none",
-                    color: "#343437",
+                    color: 'var(--primary)',
                     fontWeight: "bold",
                   }}
                 >
