@@ -4,7 +4,7 @@
 
 :root{
   /* --primary:#003F63; */
-  --primary:#161926;
+  --primary:#1a1b3a;
   --secondary:#c5a880;
   --lightGray:#999999;
   --headingFont:'Old Standard TT', serif;
@@ -22,7 +22,7 @@ body{
   
 }
 .content{
-  /* background-color: #282c34; */
+  background-color: white;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -61,7 +61,9 @@ body{
 }
 
 .SelectOption{
-  border-color: var(--secondary);
+  border-color: #dbdbdb;
+  border-radius: 5px;
+  color: var(--lightGray);
   /* outline-color: var(--secondary); */
 }
 .SelectOption:focus{

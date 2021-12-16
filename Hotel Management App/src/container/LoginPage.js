@@ -38,7 +38,6 @@ export default function LoginPage() {
       setSubmitLoading(false)
     }
     else {
-      console.log(userDetails);
       signInWithEmailAndPassword(auth, userDetails.email, userDetails.password)
         .then((success) => {
           // Signed in

@@ -26,8 +26,6 @@ export default function Admin() {
     const stateAdmin = useSelector(state => state.AdminStateReducer.admin)
     const authStateLoading = useSelector(state => state.AdminStateReducer.isLoading)
 
-    const state = useSelector(state => state)
-    console.log(state);
 
     let logout = () => {
         signOut(auth)
@@ -51,7 +49,7 @@ export default function Admin() {
         // },
         {
             page: 'Customer Bookings',
-            link: 'customer-bookings',
+            link: '',
             icon: <GoListUnordered />
         },
         // {
@@ -100,7 +98,7 @@ export default function Admin() {
                             <Stack sx={{ p: 3, backgroundColor: 'var(--primary)', width: '100%', height: '100vh' }}>
                                 <Stack sx={{ color: '#fff', py: 3 }}>
 
-                                    <Typography variant='h5'>Logo Space</Typography>
+                                    <Typography variant='h5'>Client Portal</Typography>
 
                                 </Stack>
 
@@ -144,12 +142,12 @@ export default function Admin() {
                     </Hidden>
 
 
-                    <Grid item xl={9} lg={9} md={9} sx={12} xs={12} >
+                    <Grid item xl={9} lg={9} md={9} sm={12} xs={12} >
                         <Hidden mdDown={true} > <Box justifyContent='center' alignItems='center' sx={{ boxShadow: 'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;' }} > <Typography sx={{ py: 2, fontWeight: '500' }} align='center' variant='h5' >Dashboard</Typography></Box></Hidden>
                         <Stack sx={{ mx: 2, my: 3 }}>
                             <Routes  >
-                                <Route path='' element={<Overview />} />
-                                <Route path='customer-bookings' element={<CustomerBooking />} />
+                                {/* <Route path='' element={<Overview />} /> */}
+                                <Route path='' element={<CustomerBooking />} />
                                 {/* <Route path='messages' element={<Messages />} />
                                 <Route path='users' element={<Users />} /> */}
                                 <Route path='all-hotels' element={<AllHotels />} />

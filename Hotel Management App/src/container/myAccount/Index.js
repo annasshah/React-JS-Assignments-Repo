@@ -119,7 +119,7 @@ export default function MyAccount() {
                     </Hidden>
 
 
-                    <Grid item xl={9} lg={9} md={8} sx={12} xs={12} sx={{ my: 3 }}>
+                    <Grid item xl={9} lg={9} md={8} sm={12} xs={12} sx={{ my: 3 }}>
                         <Routes  >
                             <Route path='' element={<Profile />} />
                             <Route path='bookings' element={<Bookings />} />

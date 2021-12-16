@@ -60,27 +60,6 @@ export default function AllHotels() {
 
 
     const allProducts = useSelector(state => state.productsReducer.products)
-    const state = useSelector(state => state)
-
-    console.log(state);
-
-
-    //     const { userName, cnic, country, email, phoneNumber, address, gender } = userProfile
-
-    //     const [submitLoading, setSubmitLoading] = useState(false)
-
-    //     const username = useRef()
-    //     const userEmail = useRef()
-    //     const [userGender, setUserGender] = useState(gender)
-    //     const userContactNumber = useRef()
-    //     const userCnicNumber = useRef()
-    //     const userCountry = useRef()
-    //     const userAddress = useRef()
-    //    console.log(ref.current.value);
-
-
-
-
 
     return (
         <div>
@@ -117,7 +96,7 @@ export default function AllHotels() {
                                     </StyledTableCell>
                                     <StyledTableCell align="left">{row.hotelName}</StyledTableCell>
                                     <StyledTableCell align="left">{row.city}</StyledTableCell>
-                                    <StyledTableCell align="left">{new Intl.NumberFormat().format(row.price)}/Night</StyledTableCell>
+                                    <StyledTableCell align="left">{new Intl.NumberFormat().format(row.price)} / Day</StyledTableCell>
                                     <StyledTableCell align="left">{row.postDate?row.postDate:'nt'}</StyledTableCell>
                                     <StyledTableCell align="left"><Stack><Button 
                                     // onClick={() => removeItem(row)} 

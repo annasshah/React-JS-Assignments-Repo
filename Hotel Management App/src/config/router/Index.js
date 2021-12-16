@@ -20,25 +20,11 @@ export default function AppRouter() {
 
     const newState = useSelector(a => a)
 
-    console.log(newState);
     useEffect(() => {
-        let arr = []
-        let refrence = ref(database, "hotels/");
-        onChildAdded(refrence, (snapshot) => {
-            if (snapshot.exists()) {
-                arr.push(snapshot.val())
-                getData(dispatch, arr)
-            }
-        })
-
-
-
-
 
 
         onAuthStateChanged(auth, (user) => {
             if (user) {
-
                 let userUid = user.uid
                 const reference = ref(database, `users/${userUid}/profile`)
                 //  reference = ref(database, "users/" + userUid);
@@ -48,30 +34,55 @@ export default function AppRouter() {
                         useruid: userUid
                     }
                     if (userData.userType === 'client') {
-                        adminState(dispatch, true)
-                        let arr = []
-                        let refrence = ref(database, "bookings/");
-                        onChildAdded(refrence, (snapshot) => {
+                        let newArr = []
+                        let hotelsRefrence = ref(database, "hotels/");
+
+                        onChildAdded(hotelsRefrence, (snapshot) => {
                             if (snapshot.exists()) {
-                                if(snapshot.val().clientUid === userUid){
+                                if (snapshot.val().clientuid === userUid) {
+                                    newArr.push(snapshot.val())
+
+                                }
+                            }
+                            getData(dispatch, newArr)
+                        })
+
+                        adminState(dispatch, true)
+
+                        let arr = []
+                        let bookingsRefrence = ref(database, "bookings/");
+                        onChildAdded(bookingsRefrence, (snapshot) => {
+                            if (snapshot.exists()) {
+                                if (snapshot.val().clientUid === userUid) {
                                     arr.push(snapshot.val())
                                 }
                             }
-                            getCartData(dispatch,arr)
+                            getCartData(dispatch, arr)
                         })
                     }
                     else {
                         adminState(dispatch, false)
                         let arr = []
-                        let refrence = ref(database, "bookings/");
-                        onChildAdded(refrence, (snapshot) => {
+                        let bookingsRefrence = ref(database, "bookings/");
+                        onChildAdded(bookingsRefrence, (snapshot) => {
                             if (snapshot.exists()) {
-                                if(snapshot.val().UserUid === userUid){
+                                if (snapshot.val().UserUid === userUid) {
                                     arr.push(snapshot.val())
                                 }
                             }
-                            getCartData(dispatch,arr)
+                            getCartData(dispatch, arr)
                         })
+
+                        let newArr = []
+                        let hotelsRefrence = ref(database, "hotels/");
+                        onChildAdded(hotelsRefrence, (snapshot) => {
+                            if (snapshot.exists()) {
+                                newArr.push(snapshot.val())
+                            }
+                            getData(dispatch, newArr)
+                        })
+
+
                     }
 
                     changeUserAuth(dispatch, true, userData)

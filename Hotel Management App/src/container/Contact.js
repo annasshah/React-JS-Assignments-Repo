@@ -34,7 +34,6 @@ export default function Contact() {
             dateAndTime: postDate
         }
 
-        console.log(newMessage);
 
         const newMsgKey = push(child(ref(database), 'messages/')).key;
         let reference = ref(database, `messages/${newMsgKey}`)
@@ -52,7 +51,7 @@ export default function Contact() {
 
         <Container >
             <Grid container justifyContent='center'>
-                <Grid item xl={8} lg={8} md={10} sx={12} xs={12}>
+                <Grid item xl={8} lg={8} md={10} sm={12} xs={12}>
                     <Stack direction='column' sx={{ my: 5, maxWidth: '800px' }} spacing={0}>
                         <Stack>
 

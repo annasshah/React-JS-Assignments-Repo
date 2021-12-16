@@ -1,21 +1,91 @@
 import * as React from "react";
 import { Container, AppBar, Box, Toolbar, IconButton, Typography, Menu, MenuItem, Button, Avatar, SvgIcon, Stack, } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { FaShoppingCart } from "react-icons/fa";
+// import { FaShoppingCart } from "react-icons/fa";
+// import { VscHome } from "react-icons/vsc";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { auth, signOut } from "../config/firebaseconfig/Index";
-import { changeUserAuth,getCartData} from "../config/redux/action/Index";
+import { changeUserAuth, getCartData } from "../config/redux/action/Index";
+import Drawer from '@mui/material/Drawer';
+import List from '@mui/material/List';
+import Divider from '@mui/material/Divider';
+import { styled, useTheme } from '@mui/material/styles';
+// import CssBaseline from '@mui/material/CssBaseline';
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+import ListItem from '@mui/material/ListItem';
+// import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import MailIcon from '@mui/icons-material/Mail';
+
 import SmallSpinner from '../assets/SmallSpinner'
 
 const pages = ["Home", "Contact", "About"];
 const userAuthTrue = ["My Account", "Profile", "Logout"];
 const userAuthFalse = ["Login", "Create Account"];
 
+const drawerWidth = 240;
+
+const DrawerHeader = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  padding: theme.spacing(0, 1),
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+  justifyContent: 'flex-end',
+}));
+
+
+const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
+  ({ theme, open }) => ({
+    flexGrow: 1,
+    padding: theme.spacing(3),
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    marginLeft: `-${drawerWidth}px`,
+    ...(open && {
+      transition: theme.transitions.create('margin', {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+      marginLeft: 0,
+    }),
+  }),
+);
+
 const NavbarComponent = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const theme = useTheme();
+
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+
+  const clickHandle = (text) => {
+    if (text.toLowerCase() === "home") {
+      navigate("/");
+      setOpen(false)
+    }
+    else{
+      navigate(`${text.toLowerCase()}`)
+      setOpen(false)
+    }
+  }
+
+
 
   const userAuthStaus = useSelector((a) => a.userAuthReducer.userAuth);
   const userProfile = useSelector(state => state.userAuthReducer.userProfile)
@@ -65,7 +135,7 @@ const NavbarComponent = () => {
     setAnchorElUser(null);
   };
 
-  const handleUserCart = () => { 
+  const handleUserCart = () => {
     navigate('/myaccount/my-cart')
   };
 
@@ -75,6 +145,38 @@ const NavbarComponent = () => {
 
   return (
     <AppBar position="static" sx={{ py: 1 }} elevation={0}>
+      <Drawer
+        sx={{
+          width: drawerWidth,
+          flexShrink: 0,
+          '& .MuiDrawer-paper': {
+            width: drawerWidth,
+            boxSizing: 'border-box',
+
+          },
+        }}
+        variant="persistent"
+        anchor="left"
+        open={open}
+      >
+        <DrawerHeader>
+          <IconButton onClick={handleDrawerClose}>
+            <CloseOutlinedIcon/>
+          </IconButton>
+        </DrawerHeader>
+        <Divider />
+        <List>
+          {pages.map((text, index) => (
+            <ListItem onClick={() => clickHandle(text)} button key={text}>
+              {/* <ListItemIcon>
+                {index % 2 === 0 ? <VscHome /> : <MailIcon />}
+              </ListItemIcon>*/}
+              <ListItemText sx={{ paddingLeft: 4 }} primary={text} />
+            </ListItem>
+          ))}
+        </List>
+
+      </Drawer>
       <Container>
         <Toolbar disableGutters>
           <Typography
@@ -84,7 +186,7 @@ const NavbarComponent = () => {
             component="div"
             sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
           >
-            LOGO SPACE
+            HOTEL MANAGEMENT
           </Typography>
 
 
@@ -97,7 +199,7 @@ const NavbarComponent = () => {
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
-              onClick={handleOpenNavMenu}
+              onClick={handleDrawerOpen}
               color="inherit"
             >
               <MenuIcon />
@@ -120,6 +222,21 @@ const NavbarComponent = () => {
                 display: { xs: "block", md: "none" },
               }}
             >
+
+
+
+              {/* <Drawer
+                anchor={anchor}
+                open={state[anchor]}
+                onClose={toggleDrawer(anchor, false)}
+              >
+                {list(anchor)}
+              </Drawer> */}
+
+
+
+
+
               {pages.map((page) => (
                 <MenuItem key={page} onClick={() => handleCloseNavMenu(page)}>
                   <Typography textAlign="center">{page}</Typography>
@@ -138,7 +255,7 @@ const NavbarComponent = () => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
           >
-            LOGO SPACE
+            HOTEL MANAGEMENT
           </Typography>
 
 
@@ -171,7 +288,7 @@ const NavbarComponent = () => {
 
               {AuthLoading ? <SmallSpinner /> : userAuth ? (
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt={userAuthStaus ? userProfile.userName: null} src="/static/images/avatar/2.jpg" />
+                  <Avatar alt={userAuthStaus ? userProfile.userName : null} src="/static/images/avatar/2.jpg" />
                 </IconButton>
               ) : (
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -255,4 +372,138 @@ const NavbarComponent = () => {
 export default NavbarComponent;
 
 
+
+
+// import * as React from 'react';
+// import { styled, useTheme } from '@mui/material/styles';
+// import Box from '@mui/material/Box';
+// import Drawer from '@mui/material/Drawer';
+// import CssBaseline from '@mui/material/CssBaseline';
+// import MuiAppBar from '@mui/material/AppBar';
+// import Toolbar from '@mui/material/Toolbar';
+// import List from '@mui/material/List';
+// import Typography from '@mui/material/Typography';
+// import Divider from '@mui/material/Divider';
+// import IconButton from '@mui/material/IconButton';
+// import MenuIcon from '@mui/icons-material/Menu';
+// import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+// import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+// import ListItem from '@mui/material/ListItem';
+// import ListItemIcon from '@mui/material/ListItemIcon';
+// import ListItemText from '@mui/material/ListItemText';
+// import InboxIcon from '@mui/icons-material/MoveToInbox';
+// import MailIcon from '@mui/icons-material/Mail';
+
+// const drawerWidth = 240;
+
+// const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
+//   ({ theme, open }) => ({
+//     flexGrow: 1,
+//     padding: theme.spacing(3),
+//     transition: theme.transitions.create('margin', {
+//       easing: theme.transitions.easing.sharp,
+//       duration: theme.transitions.duration.leavingScreen,
+//     }),
+//     marginLeft: `-${drawerWidth}px`,
+//     ...(open && {
+//       transition: theme.transitions.create('margin', {
+//         easing: theme.transitions.easing.easeOut,
+//         duration: theme.transitions.duration.enteringScreen,
+//       }),
+//       marginLeft: 0,
+//     }),
+//   }),
+// );
+
+// const AppBar = styled(MuiAppBar, {
+//   shouldForwardProp: (prop) => prop !== 'open',
+// })(({ theme, open }) => ({
+//   transition: theme.transitions.create(['margin', 'width'], {
+//     easing: theme.transitions.easing.sharp,
+//     duration: theme.transitions.duration.leavingScreen,
+//   }),
+//   ...(open && {
+//     width: `calc(100% - ${drawerWidth}px)`,
+//     marginLeft: `${drawerWidth}px`,
+//     transition: theme.transitions.create(['margin', 'width'], {
+//       easing: theme.transitions.easing.easeOut,
+//       duration: theme.transitions.duration.enteringScreen,
+//     }),
+//   }),
+// }));
+
+// const DrawerHeader = styled('div')(({ theme }) => ({
+//   display: 'flex',
+//   alignItems: 'center',
+//   padding: theme.spacing(0, 1),
+//   // necessary for content to be below app bar
+//   ...theme.mixins.toolbar,
+//   justifyContent: 'flex-end',
+// }));
+
+// export default function PersistentDrawerLeft() {
+//   const theme = useTheme();
+//   const [open, setOpen] = React.useState(false);
+
+//   const handleDrawerOpen = () => {
+//     setOpen(true);
+//   };
+
+//   const handleDrawerClose = () => {
+//     setOpen(false);
+//   };
+
+//   return (
+//     <Box sx={{ display: 'flex' }}>
+//       <CssBaseline />
+//       <AppBar position="fixed" open={open}>
+//         <Toolbar>
+//           <IconButton
+//             color="inherit"
+//             aria-label="open drawer"
+//             onClick={handleDrawerOpen}
+//             edge="start"
+//             sx={{ mr: 2, ...(open && { display: 'none' }) }}
+//           >
+//             <MenuIcon />
+//           </IconButton>
+//           <Typography variant="h6" noWrap component="div">
+//             Hotel Management
+//           </Typography>
+//         </Toolbar>
+//       </AppBar>
+//       <Drawer
+//         sx={{
+//           width: drawerWidth,
+//           flexShrink: 0,
+//           '& .MuiDrawer-paper': {
+//             width: drawerWidth,
+//             boxSizing: 'border-box',
+//           },
+//         }}
+//         variant="persistent"
+//         anchor="left"
+//         open={open}
+//       >
+//         <DrawerHeader>
+//           <IconButton onClick={handleDrawerClose}>
+//             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+//           </IconButton>
+//         </DrawerHeader>
+//         <Divider />
+//         <List>
+//           {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+//             <ListItem button key={text}>
+//               <ListItemIcon>
+//                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+//               </ListItemIcon>
+//               <ListItemText primary={text} />
+//             </ListItem>
+//           ))}
+//         </List>
+//         <Divider />
+//       </Drawer>
+//     </Box>
+//   );
+// }
 

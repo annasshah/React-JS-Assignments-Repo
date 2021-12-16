@@ -40,11 +40,9 @@ function Bookingform() {
     const userProfile = useSelector(state => state.userAuthReducer.userProfile)
     const userBooking = useSelector(state => state.bookingReducer.cart)
     const state = useSelector(state => state)
-    // console.log(state.bookingReducer.cart);
 
     const [errMsg, setErrMsg] = useState(false)
 
-    // console.log(userProfile)
     const username = useRef()
     const userEmail = useRef()
     const userContactNumber = useRef()
@@ -163,7 +161,6 @@ function Bookingform() {
 
         }
 
-        console.log(bookingDataObject);
 
         let reference = ref(database, `bookings/${newKey}`)
 
@@ -173,7 +170,6 @@ function Bookingform() {
                 setCustomerData({})
                 setBookingStep(true)
                 setPaymentMethod(false)
-                console.log(success)
                 let newArr = [...userBooking, bookingDataObject]
                 updateCartData(dispatch, newArr)
                 // setBookingConfirmMsg(true)
@@ -205,7 +201,6 @@ function Bookingform() {
 
 
 
-    console.log(location.state);
 
     // hotel 
     // customer 
@@ -227,18 +222,20 @@ function Bookingform() {
 
 
     const { userName, cnic, country, email, phoneNumber, address, gender } = userProfile
-
+    const userAuth = useSelector(state => state.userAuthReducer.userAuth)
 
 
     useEffect(() => {
 
-        if(location.state === null){
+        if (!userAuth) {
+            navigate('/login')
+        }
+        else if (userAuth && location.state === null) {
             navigate('/')
         }
-        else{
+        else {
             setCheckStateData(true)
         }
-        
 
     }, [])
 

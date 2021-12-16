@@ -28,9 +28,7 @@ export default function EditProfile() {
 
 
     const userProfile = useSelector(state => state.userAuthReducer.userProfile)
-    const state = useSelector(state => state)
 
-    console.log(state);
 
 
     const { userName, cnic, country, email, phoneNumber, address, gender } = userProfile
@@ -44,7 +42,6 @@ export default function EditProfile() {
     const userCnicNumber = useRef()
     const userCountry = useRef()
     const userAddress = useRef()
-    // console.log(ref.current.value);
 
 
 
@@ -70,7 +67,6 @@ export default function EditProfile() {
             .then((success) => {
                 updateUserProfile(dispatch, userData)
                 console.log(success);
-                console.log(state);
                 setSubmitLoading(false)
                 navigate('/myaccount/')
             })

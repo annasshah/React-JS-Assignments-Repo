@@ -80,7 +80,6 @@ export default function AddHotel() {
                 .then((success) => {
                     // updateUserProfile(dispatch, hotelData)
                     console.log(success);
-                    console.log(state);
                     setSubmitLoading(false)
                     navigate('to-admin/all-hotels/')
                 })

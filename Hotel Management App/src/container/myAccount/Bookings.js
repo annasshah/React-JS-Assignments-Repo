@@ -49,10 +49,8 @@ export default function Bookings() {
     const userBookings = useSelector((a) => a.bookingReducer.cart);
     const loading = useSelector((a) => a.productsReducer.isLoading)
     const userProfile = useSelector(state => state.userAuthReducer.userProfile)
-    const mm = useSelector(state => state)
 
 
-    console.log(userBookings);
 
 
 
@@ -63,7 +61,6 @@ export default function Bookings() {
 
     // let removeItem = (item) => {
 
-    //     console.log(item)
     //     let newarr = userCart.filter(x => x.id !== item.id)
     //     let cartReference = ref(database, `users/${userProfile.useruid}/cart`)
     //     set(cartReference, newarr)

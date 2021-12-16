@@ -58,7 +58,7 @@ export default function CreateAccount() {
 
     setSubmitLoading(true)
 
-    if (!userName || !email || !password || !phoneNumber || !country || !cnic || !usercategory === '--') {
+    if (!userName || !email || !password || !phoneNumber || !country || !cnic || !usercategory === 'Select User Category') {
       setErr("Please fill the fields first!");
       setSubmitLoading(false)
     } else {
@@ -122,7 +122,7 @@ export default function CreateAccount() {
       justifyContent="center"
       alignItems="center"
       direction="column"
-      sx={{ width: "100%", height: "100vh", backgroundColor: '#0000008a' }}
+      sx={{ width: "100%", minHeight: "100vh", backgroundColor: '#0000008a',py:4 }}
     >
       {loading ? <SmallSpinner /> :
         <Paper
@@ -206,9 +206,9 @@ export default function CreateAccount() {
 
 
                 <Stack>
-                  <label className="text-muted" htmlFor="usercategory">Select User Category</label>
+                  {/* <label className="text-muted" htmlFor="usercategory"></label> */}
                   <select onChange={(e) => setUsercategory(e.target.value)} className="py-3 px-2 SelectOption" id='usercategory'>
-                    <option selected disabled value="--">--</option>
+                    <option selected disabled value="Select User Category">Select User Category</option>
                     <option value="customer">Customer</option>
                     <option value="client">Client</option>
                   </select>
