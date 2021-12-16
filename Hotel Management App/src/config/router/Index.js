@@ -94,6 +94,16 @@ export default function AppRouter() {
 
                 // changeUserAuth(dispatch, true);
             } else {
+
+                let newArr = []
+                let hotelsRefrence = ref(database, "hotels/");
+                onChildAdded(hotelsRefrence, (snapshot) => {
+                    if (snapshot.exists()) {
+                        newArr.push(snapshot.val())
+                    }
+                    getData(dispatch, newArr)
+                })
+
                 changeUserAuth(dispatch, false, {})
                 getCartData(dispatch, [])
                 adminState(dispatch, false)
