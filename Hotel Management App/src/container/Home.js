@@ -61,6 +61,12 @@ export default function Home() {
 
   }, [allProducts])
 
+  // useEffect(() => {
+
+  //   setProductState(allProducts)
+
+  // }, [])
+
 
 
   return (
@@ -90,7 +96,7 @@ export default function Home() {
 
             </Stack>
 
-            {loading ? <Spinner /> : <Grid container justifyContent='center' spacing={3}
+            {productState ? <Grid container justifyContent='center' spacing={3}
             // spacing={{ xs: 2, md: 3 }}
             >
 
@@ -142,7 +148,7 @@ export default function Home() {
               {productState.map((e, i) => {
                 return <ProductCard key={i} data={e} />;
               })}
-            </Grid>}
+            </Grid> : <Spinner />}
           </Container>
         </Box>
 
