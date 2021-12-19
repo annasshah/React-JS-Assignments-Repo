@@ -122,7 +122,7 @@ export default function CreateAccount() {
       justifyContent="center"
       alignItems="center"
       direction="column"
-      sx={{ width: "100%", minHeight: "100vh", backgroundColor: '#0000008a',py:4 }}
+      sx={{ width: "100%", minHeight: "100vh", backgroundColor: '#1a1b3a9a',py:4 }}
     >
       {loading ? <SmallSpinner /> :
         <Paper

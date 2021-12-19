@@ -15,7 +15,7 @@ export default function ProductCard({ data }) {
     return (
 
 
-        <Grid xl={4} lg={4} md={4} sm={6} xs={12} item   spacing={3}>
+        <Grid xl={4} lg={4} md={4} sm={6} xs={12} item >
             <Stack direction='column' 
             // sx={{ border: '1px solid gray' }}
              className="productCard">

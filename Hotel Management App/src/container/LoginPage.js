@@ -69,7 +69,7 @@ export default function LoginPage() {
       justifyContent="center"
       alignItems="center"
       direction="column"
-      sx={{ width: "100%", height: "90vh", backgroundColor: '#0000008a' }}
+      sx={{ width: "100%", height: "90vh", backgroundColor: '#1a1b3a9a' }}
     >
       {loading ? <SmallSpinner /> : <Paper
         square={false}
